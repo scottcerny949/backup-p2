@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Financial Plot</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+<label for="stockChoice"><b>Stock:</b></label>
+  <select id="stockChoice">
+    <option value="AAPL">AAPL</option>
+    <option value="AMZN">AMZN</option>
+    <option value="FB">FB</option>
+    <option value="GOOG">GOOG</option>
+    <option value="NFLX">NFLX</option>
+  </select>
+
+  <div id="line-bar"></div>
+  <script src="line-bar.js"></script>
+</body>
+
+</html>
