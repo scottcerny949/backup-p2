@@ -12,8 +12,9 @@
 
 // function to display the initial chart before user uses dropdown list
 function init() {
-  var startStock = "AAPL"
+  var startStock = "AAPL";
   buildLineBar(startStock);
+  console.log(startStock);
 }
 
 //function to plot the chart
@@ -37,6 +38,7 @@ function buildLineBar(stock) {
     var closingPrices = data.dataset.data.map(row => row[4]);
     // console.log(closingPrices);
     var volume = data.dataset.data.map(row => row[5]);
+    // console.log(volume);
 
     var trace1 = {
       type: "scatter",
@@ -64,7 +66,7 @@ function buildLineBar(stock) {
 
     var layout = {
       title: `${stock} Stock Price / Volume`,
-      width: 1400,
+      width: 1000,
       showlegend: false,
       xaxis: {
         range: [startDate, endDate],
@@ -81,9 +83,7 @@ function buildLineBar(stock) {
         side: 'right'
       }
     };
-
     Plotly.newPlot("line-bar", data, layout);
-
   });
 }
 
@@ -95,13 +95,8 @@ function updatePlotly() {
   var dropdownMenu = d3.select("#stockChoice");
   // Assign the value of the dropdown menu option to a variable
   var dataset = dropdownMenu.property("value");
-
-    console.log(dataset);
-
+  console.log(dataset);
   buildLineBar(dataset);
-
-  Plotly.restyle("plot", "x", [x]);
-  Plotly.restyle("plot", "y", [y]);
 }
 
 init();
