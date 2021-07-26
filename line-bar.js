@@ -1,5 +1,15 @@
-
-// how do i get Robert's data pulled in here?
+/**
+ * Helper function to select stock data
+ * Returns an array of values
+ * @param {array} rows
+ * @param {integer} index
+ * index 0 - Date
+ * index 1 - Open
+ * index 2 - High
+ * index 3 - Low
+ * index 4 - Close
+ * index 5 - Volume
+ */
 
 //d3.json("http://127.0.0.1:5000/data").then(function(data, err)   {
 //console.log(data)
@@ -7,8 +17,6 @@
 //console.log(data.AAPL[0].Date)
 
 //})
-
-// should not be using the url anymore
 
 // function to display the initial chart before user uses dropdown list
 function init() {
@@ -25,7 +33,7 @@ function buildLineBar(stock) {
 
   d3.json(url).then(function(data) {
     // Grab values from the response json object to build the plots
-    var name = data.dataset.name;
+    //var name = data.dataset.name;
     var stock = data.dataset.dataset_code;
     var startDate = data.dataset.start_date;
     var endDate = data.dataset.end_date;
@@ -43,7 +51,7 @@ function buildLineBar(stock) {
     var trace1 = {
       type: "scatter",
       mode: "lines",
-      name: name,
+      name: stock,
       x: dates,
       y: closingPrices,
       yaxis: 'y2',
@@ -54,7 +62,7 @@ function buildLineBar(stock) {
 
     var trace2 = {
       type: "bar",
-      name: name,
+      name: stock,
       x: dates,
       y: volume,
       marker: {
@@ -66,7 +74,7 @@ function buildLineBar(stock) {
 
     var layout = {
       title: `${stock} Stock Price / Volume`,
-      width: 1000,
+      //width: 1000,
       showlegend: false,
       xaxis: {
         range: [startDate, endDate],
@@ -83,7 +91,7 @@ function buildLineBar(stock) {
         side: 'right'
       }
     };
-    Plotly.newPlot("line-bar", data, layout);
+    Plotly.newPlot("line-bar", data, layout, {responsive: true});
   });
 }
 
@@ -100,3 +108,12 @@ function updatePlotly() {
 }
 
 init();
+
+
+/** -- code to try for the dropdown instead
+var keys = Object.entries(data)
+keys.pop()
+keys.forEach(function([key, value]) {
+    d3.select("#stockChoice").append("option").attr("key",key).text(data[key][0].name);
+})
+*/
